@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,21 +16,12 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    public function clubProfile(): HasOne
-    {
-        return $this->hasOne(ClubProfile::class);
-    }
-
-    public function analysisReports(): HasMany
-    {
-        return $this->hasMany(AnalysisReport::class);
-    }
+    public function clubs(): HasMany { return $this->hasMany(Club::class, 'created_by'); }
+    public function clubProfile(): HasMany { return $this->hasMany(ClubProfile::class); }
+    public function analysisReports(): HasMany { return $this->hasMany(AnalysisReport::class); }
 
     protected function casts(): array
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return ['email_verified_at' => 'datetime', 'password' => 'hashed'];
     }
 }
