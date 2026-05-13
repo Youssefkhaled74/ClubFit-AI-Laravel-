@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AnalysisReportController;
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ClubProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PlayerController;
@@ -11,6 +12,8 @@ Route::get('/', fn () => redirect()->route('dashboard'));
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', DashboardController::class)->name('dashboard');
+
+    Route::resource('clubs', ClubController::class)->middleware('role:admin,club manager,scout,coach');
 
     Route::resource('club-profiles', ClubProfileController::class)->middleware('role:admin,club manager,scout,coach');
     Route::resource('players', PlayerController::class)->middleware('role:admin,club manager,scout,coach');

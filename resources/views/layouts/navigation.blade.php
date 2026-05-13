@@ -2,7 +2,7 @@
     <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
         <div class="flex items-center gap-6">
             <a class="text-xl font-bold text-cyan-400" href="{{ route('dashboard') }}">ClubFit AI</a>
-            <a class="text-slate-300 hover:text-cyan-400" href="{{ route('club-profiles.index') }}">Clubs</a>
+            <a class="text-slate-300 hover:text-cyan-400" href="{{ route('clubs.index') }}">Club Setup</a>
             <a class="text-slate-300 hover:text-cyan-400" href="{{ route('players.index') }}">Players</a>
             <a class="text-slate-300 hover:text-cyan-400" href="{{ route('reports.index') }}">Reports</a>
         </div>
